@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
@@ -265,11 +264,8 @@ public class ProductControllerTest {
         String category = "CAR";
         
         //when
-        RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/products")
-                .param("search", search)
-                .param("category", category);
-        
+        RequestBuilder requestBuilder = when_execute("search", search, "category", category);
+
         //then
         mockMvc.perform(requestBuilder)
                 .andExpect(status().isOk())
@@ -287,11 +283,8 @@ public class ProductControllerTest {
         String sort = "desc";
         
         //when
-        RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/products")
-                .param("orderBy", orderBy)
-                .param("sort", sort);
-        
+        RequestBuilder requestBuilder = when_execute("orderBy", orderBy, "sort", sort);
+
         //then
         mockMvc.perform(requestBuilder)
                 .andDo(print())
@@ -315,11 +308,8 @@ public class ProductControllerTest {
         String offset = "2";
         
         //when
-        RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/products")
-                .param("limit", limit)
-                .param("offset", offset);
-        
+        RequestBuilder requestBuilder = when_execute("limit", limit, "offset", offset);
+
         //then
         mockMvc.perform(requestBuilder)
                 .andDo(print())
@@ -351,6 +341,14 @@ public class ProductControllerTest {
     private RequestBuilder when_execute(ProductRequest productRequest) throws JsonProcessingException {
         RequestBuilder requestBuilder = when_execute(productRequest, MockMvcRequestBuilders
                 .post("/products"));
+        return requestBuilder;
+    }
+
+    private static RequestBuilder when_execute(String name1, String variable1, String name2, String variable2) {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .get("/products")
+                .param(name1, variable1)
+                .param(name2, variable2);
         return requestBuilder;
     }
 }
