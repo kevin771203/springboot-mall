@@ -1,7 +1,7 @@
 package org.kevinlin.springbootmall.service;
 
 import jakarta.validation.Valid;
-import org.kevinlin.springbootmall.constant.ProductCategory;
+import org.kevinlin.springbootmall.dto.ProductQueryParams;
 import org.kevinlin.springbootmall.dto.ProductRequest;
 import org.kevinlin.springbootmall.model.Product;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    List<Product> getProducts(ProductCategory category,String search);
+    List<Product> getProducts(ProductQueryParams productQueryParams);
 
     Product getProductById(Integer productId);
 
