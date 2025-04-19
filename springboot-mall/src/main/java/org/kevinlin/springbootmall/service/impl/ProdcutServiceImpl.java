@@ -1,6 +1,7 @@
 package org.kevinlin.springbootmall.service.impl;
 
 import org.kevinlin.springbootmall.dao.ProductDao;
+import org.kevinlin.springbootmall.dto.ProductRequest;
 import org.kevinlin.springbootmall.model.Product;
 import org.kevinlin.springbootmall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,9 @@ public class ProdcutServiceImpl implements ProductService {
     }
 
 
+    @Override
+    public Integer createProduct(ProductRequest productRequest) {
+        return productDao.createProduct(productRequest);
+    }
 
 }
