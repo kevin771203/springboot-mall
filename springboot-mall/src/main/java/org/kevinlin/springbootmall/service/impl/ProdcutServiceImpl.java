@@ -1,5 +1,6 @@
 package org.kevinlin.springbootmall.service.impl;
 
+import org.kevinlin.springbootmall.constant.ProductCategory;
 import org.kevinlin.springbootmall.dao.ProductDao;
 import org.kevinlin.springbootmall.dto.ProductRequest;
 import org.kevinlin.springbootmall.model.Product;
@@ -16,8 +17,8 @@ public class ProdcutServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public List<Product> getProducts() {
-        return productDao.getProducts();
+    public List<Product> getProducts(ProductCategory category,String search) {
+        return productDao.getProducts(category,search);
     }
 
     @Override

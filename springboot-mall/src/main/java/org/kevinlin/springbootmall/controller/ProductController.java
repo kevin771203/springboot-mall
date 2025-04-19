@@ -1,6 +1,7 @@
 package org.kevinlin.springbootmall.controller;
 
 import jakarta.validation.Valid;
+import org.kevinlin.springbootmall.constant.ProductCategory;
 import org.kevinlin.springbootmall.dto.ProductRequest;
 import org.kevinlin.springbootmall.model.Product;
 import org.kevinlin.springbootmall.service.ProductService;
@@ -18,8 +19,11 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getProducts() {
-        List<Product> productlist = productService.getProducts();
+    public ResponseEntity<List<Product>> getProducts(
+            @RequestParam(required = false) ProductCategory category,
+            @RequestParam(required = false) String search
+    ) {
+        List<Product> productlist = productService.getProducts(category, search);
 
         return ResponseEntity.status(HttpStatus.OK).body(productlist);
     }
