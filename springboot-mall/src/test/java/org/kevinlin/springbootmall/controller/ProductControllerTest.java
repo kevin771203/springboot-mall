@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -24,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ProductControllerTest {
@@ -33,7 +35,11 @@ public class ProductControllerTest {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     // 查詢商品
+    @Transactional
     @Test
     public void getProduct_success() throws Exception {
 
@@ -238,14 +244,14 @@ public class ProductControllerTest {
     // 查詢商品列表
     @Test
     public void getProducts() throws Exception {
-        
+
         //given
         String getAllProduct = "/products";
-        
+
         //when
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get(getAllProduct);
-        
+
         //then
         mockMvc.perform(requestBuilder)
                 .andDo(print())
@@ -257,12 +263,12 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void getProducts_filtering() throws Exception {
-        
+    void getProducts_filtering() throws Exception {
+
         //given
         String search = "B";
         String category = "CAR";
-        
+
         //when
         RequestBuilder requestBuilder = when_execute("search", search, "category", category);
 
@@ -276,12 +282,12 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void getProducts_sorting() throws Exception {
-        
+    void getProducts_sorting() throws Exception {
+
         //given
         String orderBy = "price";
         String sort = "desc";
-        
+
         //when
         RequestBuilder requestBuilder = when_execute("orderBy", orderBy, "sort", sort);
 
@@ -301,12 +307,12 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void getProducts_pagination() throws Exception {
-        
+    void getProducts_pagination() throws Exception {
+
         //given
         String limit = "2";
         String offset = "2";
-        
+
         //when
         RequestBuilder requestBuilder = when_execute("limit", limit, "offset", offset);
 
@@ -321,7 +327,7 @@ public class ProductControllerTest {
                 .andExpect(jsonPath("$.results[0].productId", equalTo(5)))
                 .andExpect(jsonPath("$.results[1].productId", equalTo(4)));
     }
-    
+
     private static ProductRequest setProductRequest(String testFoodProduct, ProductCategory productCategory, String url, int price, int stock) {
         ProductRequest productRequest = new ProductRequest();
         productRequest.setProductName(testFoodProduct);
