@@ -11,13 +11,13 @@ public interface ProductDao {
 
     List<Product> getProducts(ProductQueryParams productQueryParams);
 
-    Product getProductById(Integer productId);
+    Product getProductById(Long productId);
 
-    Integer createProduct(ProductRequest productRequest);
+    Long createProduct(Product product);
 
-    void updateProduct(Integer productId, ProductRequest productRequest);
+    void updateProduct(Long productId, ProductRequest productRequest);
 
-    void deleteProductById(Integer productId);
+    void deleteProductById(Long productId);
 
 
 }

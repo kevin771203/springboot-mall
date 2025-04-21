@@ -13,7 +13,7 @@ public class ProductRowMapper implements RowMapper<Product> {
     @Override
     public Product mapRow(ResultSet resultSet, int i) throws SQLException {
         Product product = new Product();
-        product.setProductId(resultSet.getInt("product_id"));
+        product.setProductId(resultSet.getLong("product_id"));
         product.setProductName(resultSet.getString("product_name"));
         product.setCategory(getStringProductCategory(resultSet, "category"));
         product.setImageUrl(resultSet.getString("image_url"));

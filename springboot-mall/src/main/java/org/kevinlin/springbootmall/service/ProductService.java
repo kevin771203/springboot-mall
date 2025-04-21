@@ -13,11 +13,11 @@ public interface ProductService {
 
     List<Product> getProducts(ProductQueryParams productQueryParams);
 
-    Product getProductById(Integer productId);
+    Product getProductById(Long productId);
 
-    Integer createProduct(@Valid ProductRequest productRequest);
+    Long createProduct(@Valid ProductRequest productRequest);
 
-    void updateProduct(Integer productId, @Valid ProductRequest productRequest);
+    void updateProduct(Long productId, @Valid ProductRequest productRequest);
 
-    void deleteProductById(Integer productId);
+    void deleteProductById(Long productId);
 }

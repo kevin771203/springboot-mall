@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS product
 (
-    product_id         INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    product_id         BIGINT          NOT NULL PRIMARY KEY,
     product_name       VARCHAR(128)  NOT NULL,
     category           VARCHAR(32)  NOT NULL,
     image_url          VARCHAR(256) NOT NULL,

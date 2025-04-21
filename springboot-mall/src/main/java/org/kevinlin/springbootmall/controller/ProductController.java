@@ -64,7 +64,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/{productId}")
-    public ResponseEntity<Product> getProductById(@PathVariable Integer productId) {
+    public ResponseEntity<Product> getProductById(@PathVariable Long productId) {
         Product product = productService.getProductById(productId);
 
         if (product != null) {
@@ -76,7 +76,7 @@ public class ProductController {
 
     @PostMapping("/products")
     public ResponseEntity<Product> createProduct(@RequestBody @Valid ProductRequest productRequest) {
-        Integer productId = productService.createProduct(productRequest);
+        Long productId = productService.createProduct(productRequest);
 
         Product product = productService.getProductById(productId);
 
@@ -84,7 +84,7 @@ public class ProductController {
     }
 
     @PutMapping("/products/{productId}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Integer productId,
+    public ResponseEntity<Product> updateProduct(@PathVariable Long productId,
                                                  @RequestBody @Valid ProductRequest productRequest) {
 
         //檢查 product 是否存在
@@ -103,7 +103,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/products/{productId}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Integer productId) {
+    public ResponseEntity<?> deleteProduct(@PathVariable Long productId) {
 
         productService.deleteProductById(productId);
 
