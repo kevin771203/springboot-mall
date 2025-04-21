@@ -1,13 +1,12 @@
 package org.kevinlin.springbootmall.dao;
 
-import org.kevinlin.springbootmall.dto.UserRegisterRequest;
 import org.kevinlin.springbootmall.model.User;
 
 public interface UserDao {
 
-    Integer createUser(UserRegisterRequest userRegisterRequest);
+    Long createUser(User user);
 
-    User getUserById(Integer userId);
+    User getUserById(Long userId);
 
     User getUserByEmail(String email);
 }

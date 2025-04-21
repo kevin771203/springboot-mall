@@ -44,7 +44,7 @@ public class ProductControllerTest {
     public void getProduct_success() throws Exception {
 
         //given
-        Integer productId = 1;
+        Long productId = 1L;
 
         //when
         RequestBuilder requestBuilder = when_execute(productId);
@@ -68,7 +68,7 @@ public class ProductControllerTest {
     public void getProduct_notFound() throws Exception {
 
         //given
-        Integer productId = 20000;
+        Long productId = 2000L;
 
         //when
         RequestBuilder requestBuilder = when_execute(productId);
@@ -131,7 +131,7 @@ public class ProductControllerTest {
     public void updateProduct_success() throws Exception {
 
         //given
-        Integer productId = 3;
+        Long productId = 3L;
         ProductRequest productRequest = setProductRequest(
                 "test food product",
                 ProductCategory.FOOD,
@@ -171,7 +171,7 @@ public class ProductControllerTest {
     public void updateProduct_illegalArgument() throws Exception {
 
         //given
-        Integer productId = 3;
+        Long productId = 3L;
         ProductRequest productRequest = new ProductRequest();
         productRequest.setProductName("test food product");
 
@@ -214,7 +214,7 @@ public class ProductControllerTest {
     public void deleteProduct_success() throws Exception {
 
         //given
-        Integer productId = 5;
+        Long productId = 5L;
 
         //when
         RequestBuilder requestBuilder = MockMvcRequestBuilders
@@ -230,7 +230,7 @@ public class ProductControllerTest {
     public void deleteProduct_deleteNonExistingProduct() throws Exception {
 
         //given
-        Integer productId = 20000;
+        Long productId = 2000L;
 
         //when
         RequestBuilder requestBuilder = MockMvcRequestBuilders
@@ -338,7 +338,7 @@ public class ProductControllerTest {
         return productRequest;
     }
 
-    private static RequestBuilder when_execute(Integer productId) {
+    private static RequestBuilder when_execute(Long productId) {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get("/products/{productId}", productId);
         return requestBuilder;

@@ -1,7 +1,6 @@
 package org.kevinlin.springbootmall.dao.impl;
 
 import org.kevinlin.springbootmall.dao.UserDao;
-import org.kevinlin.springbootmall.dto.UserRegisterRequest;
 import org.kevinlin.springbootmall.model.User;
 import org.kevinlin.springbootmall.rowmapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,29 +22,29 @@ public class UserDaoImpl implements UserDao {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Override
-    public Integer createUser(UserRegisterRequest userRegisterRequest) {
-        String sql = "INSERT INTO users (email, password, created_date, last_modified_date) " +
-                "VALUES (:email, :password, :createdDate, :lastModifiedDate)";
+    public Long createUser(User user) {
+        String sql = "INSERT INTO users (user_id ,email, password, created_date, last_modified_date) " +
+                "VALUES (:user_id, :email, :password, :createdDate, :lastModifiedDate)";
 
         Map<String, Object> map = new HashMap<>();
-        map.put("email", userRegisterRequest.getEmail());
-        map.put("password", userRegisterRequest.getPassword());
+        map.put("user_id", user.getUserId());
+        map.put("email", user.getEmail());
+        map.put("password", user.getPassword());
 
         Date now = new Date();
         map.put("createdDate", now);
         map.put("lastModifiedDate", now);
 
-        KeyHolder keyHolder = new GeneratedKeyHolder();
 
-        namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map), keyHolder);
+        namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map));
 
-        int userId = keyHolder.getKey().intValue();
 
-        return userId;
+        return user.getUserId();
+
     }
 
     @Override
-    public User getUserById(Integer userId) {
+    public User getUserById(Long userId) {
         String sql = "SELECT user_id, email, password, created_date, last_modified_date " +
                 "FROM users WHERE user_id = :userId";
 

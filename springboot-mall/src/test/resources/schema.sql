@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS product
 
 CREATE TABLE IF NOT EXISTS users
 (
-    user_id            INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id            BIGINT          NOT NULL PRIMARY KEY,
     email              VARCHAR(256) NOT NULL UNIQUE,
     password           VARCHAR(256) NOT NULL,
     created_date       TIMESTAMP    NOT NULL,

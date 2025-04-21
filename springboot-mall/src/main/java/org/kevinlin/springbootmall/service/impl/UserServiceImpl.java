@@ -5,6 +5,7 @@ import org.kevinlin.springbootmall.dto.UserLoginRequest;
 import org.kevinlin.springbootmall.dto.UserRegisterRequest;
 import org.kevinlin.springbootmall.model.User;
 import org.kevinlin.springbootmall.service.UserService;
+import org.kevinlin.springbootmall.util.IdGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,27 +22,37 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private IdGenerator idGenerator;
+
     @Override
-    public Integer register(UserRegisterRequest userRegisterRequest) {
+    public Long register(UserRegisterRequest userRegisterRequest) {
 
         //檢查 email 是否存在
-        User user = userDao.getUserByEmail(userRegisterRequest.getEmail());
+        User existingUser = userDao.getUserByEmail(userRegisterRequest.getEmail());
 
-        if (user != null) {
+        if (existingUser != null) {
             log.warn("User with email {} already exists", userRegisterRequest.getEmail());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 
+
+
         //使用MD5生成密碼
         String hashedPassword = DigestUtils.md5DigestAsHex(userRegisterRequest.getPassword().getBytes());
         userRegisterRequest.setPassword(hashedPassword);
+        
+        User user = new User();
+        user.setUserId(Long.parseLong(idGenerator.generateId()));
+        user.setEmail(userRegisterRequest.getEmail());
+        user.setPassword(userRegisterRequest.getPassword());
 
         //創建 user
-        return userDao.createUser(userRegisterRequest);
+        return userDao.createUser(user);
     }
 
     @Override
-    public User getUserById(Integer userId) {
+    public User getUserById(Long userId) {
         return userDao.getUserById(userId);
     }
 

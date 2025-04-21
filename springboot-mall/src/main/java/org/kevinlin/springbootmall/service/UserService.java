@@ -7,9 +7,9 @@ import org.kevinlin.springbootmall.model.User;
 
 public interface UserService {
 
-    Integer register(UserRegisterRequest userRegisterRequest);
+    Long register(UserRegisterRequest userRegisterRequest);
 
-    User getUserById(Integer userId);
+    User getUserById(Long userId);
 
     User login(UserLoginRequest userLoginRequest);
 }
