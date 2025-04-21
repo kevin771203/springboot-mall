@@ -9,5 +9,5 @@ public interface UserDao {
 
     User getUserById(Integer userId);
 
-    User getUserEmailByEmail(String email);
+    User getUserByEmail(String email);
 }

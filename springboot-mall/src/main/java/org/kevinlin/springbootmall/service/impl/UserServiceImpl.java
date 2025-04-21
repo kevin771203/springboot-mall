@@ -1,6 +1,7 @@
 package org.kevinlin.springbootmall.service.impl;
 
 import org.kevinlin.springbootmall.dao.UserDao;
+import org.kevinlin.springbootmall.dto.UserLoginRequest;
 import org.kevinlin.springbootmall.dto.UserRegisterRequest;
 import org.kevinlin.springbootmall.model.User;
 import org.kevinlin.springbootmall.service.UserService;
@@ -23,7 +24,7 @@ public class UserServiceImpl implements UserService {
     public Integer register(UserRegisterRequest userRegisterRequest) {
 
         //檢查 email 是否存在
-        User user = userDao.getUserEmailByEmail(userRegisterRequest.getEmail());
+        User user = userDao.getUserByEmail(userRegisterRequest.getEmail());
 
         if (user != null) {
             log.warn("User with email {} already exists", userRegisterRequest.getEmail());
@@ -37,5 +38,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(Integer userId) {
         return userDao.getUserById(userId);
+    }
+
+    @Override
+    public User login(UserLoginRequest userLoginRequest) {
+
+        User user = userDao.getUserByEmail(userLoginRequest.getEmail());
+
+        if (user == null) {
+            log.warn("User with email {} not found", userLoginRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        if (user.getPassword().equals(userLoginRequest.getPassword())) {
+            return user;
+        }else {
+            log.warn("User with email {} and password not match", userLoginRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
     }
 }
