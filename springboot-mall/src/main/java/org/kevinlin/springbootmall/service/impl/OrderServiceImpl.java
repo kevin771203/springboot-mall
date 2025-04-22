@@ -5,7 +5,7 @@ import org.kevinlin.springbootmall.dao.ProductDao;
 import org.kevinlin.springbootmall.dao.UserDao;
 import org.kevinlin.springbootmall.dto.BuyItem;
 import org.kevinlin.springbootmall.dto.OrderQueryParams;
-import org.kevinlin.springbootmall.dto.createOrderRequest;
+import org.kevinlin.springbootmall.dto.CreateOrderRequest;
 import org.kevinlin.springbootmall.model.Order;
 import org.kevinlin.springbootmall.model.OrderItem;
 import org.kevinlin.springbootmall.model.Product;
@@ -71,7 +71,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional
     @Override
-    public Long createOrder(Long userId, createOrderRequest createOrderRequest) {
+    public Long createOrder(Long userId, CreateOrderRequest createOrderRequest) {
 
         //檢查 userId 是否存在
         User user = userDao.getUserById(userId);

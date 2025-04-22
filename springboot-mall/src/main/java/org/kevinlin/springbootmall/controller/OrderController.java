@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import org.kevinlin.springbootmall.dto.OrderQueryParams;
-import org.kevinlin.springbootmall.dto.createOrderRequest;
+import org.kevinlin.springbootmall.dto.CreateOrderRequest;
 import org.kevinlin.springbootmall.model.Order;
 import org.kevinlin.springbootmall.service.OrderService;
 import org.kevinlin.springbootmall.util.Page;
@@ -50,7 +50,7 @@ public class OrderController {
 
                                                  @PostMapping("/users/{userId}/orders")
     public ResponseEntity<?> createOrder(@PathVariable Long userId,
-                                                 @RequestBody @Valid createOrderRequest createOrderRequest) {
+                                                 @RequestBody @Valid CreateOrderRequest createOrderRequest) {
 
         Long orderId = orderService.createOrder(userId, createOrderRequest);
 
