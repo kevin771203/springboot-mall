@@ -9,4 +9,8 @@ public interface OrderDao {
     Long createOrder(Order order);
 
     void createOrderItems(Long orderId, List<OrderItem> orderItemList);
+
+    Order getOrderById(Long orderId);
+
+    List<OrderItem> getOrderItemsByOrderId(Long orderId);
 }

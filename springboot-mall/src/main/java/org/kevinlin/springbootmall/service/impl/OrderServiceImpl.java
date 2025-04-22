@@ -28,6 +28,17 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private ProductDao productDao;
 
+    @Override
+    public Order getOrderById(Long orderId) {
+        Order order = orderDao.getOrderById(orderId);
+
+        List<OrderItem> orderItemList = orderDao.getOrderItemsByOrderId(orderId);
+
+        order.setOrderItemList(orderItemList);
+
+        return order;
+    }
+
     @Transactional
     @Override
     public Long createOrder(Long userId, createOrderRequest createOrderRequest) {

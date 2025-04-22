@@ -2,6 +2,7 @@ package org.kevinlin.springbootmall.controller;
 
 import jakarta.validation.Valid;
 import org.kevinlin.springbootmall.dto.createOrderRequest;
+import org.kevinlin.springbootmall.model.Order;
 import org.kevinlin.springbootmall.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,9 @@ public class OrderController {
 
         Long orderId = orderService.createOrder(userId, createOrderRequest);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderId);
+        Order order = orderService.getOrderById(orderId);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(order);
 
 
     }
