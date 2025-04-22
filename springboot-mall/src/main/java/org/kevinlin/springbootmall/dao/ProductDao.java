@@ -7,6 +7,7 @@ import org.kevinlin.springbootmall.model.Product;
 import java.util.List;
 
 public interface ProductDao {
+
     Integer countProducts(ProductQueryParams productQueryParams);
 
     List<Product> getProducts(ProductQueryParams productQueryParams);
@@ -19,5 +20,6 @@ public interface ProductDao {
 
     void deleteProductById(Long productId);
 
+    void updateStock(Long productId, Integer stock);
 
 }
