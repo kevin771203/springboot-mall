@@ -4,6 +4,7 @@ import org.kevinlin.springbootmall.dao.OrderDao;
 import org.kevinlin.springbootmall.dao.ProductDao;
 import org.kevinlin.springbootmall.dao.UserDao;
 import org.kevinlin.springbootmall.dto.BuyItem;
+import org.kevinlin.springbootmall.dto.OrderQueryParams;
 import org.kevinlin.springbootmall.dto.createOrderRequest;
 import org.kevinlin.springbootmall.model.Order;
 import org.kevinlin.springbootmall.model.OrderItem;
@@ -40,6 +41,22 @@ public class OrderServiceImpl implements OrderService {
     private UserDao userDao;
 
 
+    @Override
+    public List<Order> getOrders(OrderQueryParams orderQueryParams) {
+        List<Order> orderList = orderDao.getOrders(orderQueryParams);
+
+        for(Order order : orderList) {
+            List<OrderItem> orderItemList = orderDao.getOrderItemsByOrderId(order.getOrderId());
+            order.setOrderItemList(orderItemList);
+        }
+
+        return orderList;
+    }
+
+    @Override
+    public Integer countOrders(OrderQueryParams orderQueryParams) {
+        return orderDao.countOrders(orderQueryParams);
+    }
 
     @Override
     public Order getOrderById(Long orderId) {

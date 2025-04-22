@@ -1,5 +1,6 @@
 package org.kevinlin.springbootmall.dao;
 
+import org.kevinlin.springbootmall.dto.OrderQueryParams;
 import org.kevinlin.springbootmall.model.Order;
 import org.kevinlin.springbootmall.model.OrderItem;
 
@@ -13,4 +14,8 @@ public interface OrderDao {
     Order getOrderById(Long orderId);
 
     List<OrderItem> getOrderItemsByOrderId(Long orderId);
+
+    List<Order> getOrders(OrderQueryParams orderQueryParams);
+
+    Integer countOrders(OrderQueryParams orderQueryParams);
 }
