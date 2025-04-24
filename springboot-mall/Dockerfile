@@ -1,6 +1,10 @@
 FROM openjdk:17-jdk-slim
+
+RUN apt-get update && \
+    apt-get install -y maven && \
+    apt-get clean
+
 WORKDIR /app
-COPY target/springboot-mall-0.0.1-SNAPSHOT.jar springboot-mall.jar
-ENV SPRING_PROFILES_ACTIVE=prod
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "springboot-mall.jar"]
+COPY . /app
+
+CMD ["mvn", "test"]
