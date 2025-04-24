@@ -23,5 +23,3 @@ jobs:
 
     - name: Build Docker image
       run: docker build -t springboot-mall .
-
-    # 你可以加上部署到雲端的步驟

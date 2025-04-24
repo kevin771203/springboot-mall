@@ -19,5 +19,5 @@ services:
         condition: service_healthy
     volumes:
       - .:/app
-      - ./.env:/app/.env  # 將 .env 文件掛載到容器內
+      - ./.env:/app/.env
     working_dir: /app
