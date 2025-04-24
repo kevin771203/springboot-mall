@@ -22,6 +22,8 @@ jobs:
 
       - name: Build and start with Docker Compose
         run: docker compose up --build -d
+        working-directory: ${{ github.workspace }}
+
 
       - name: Wait until MySQL is healthy
         run: |
