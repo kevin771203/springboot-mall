@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
+          distribution: 'adoptopenjdk'   # 指定 Java 發行版
 
       - name: Build the project with Maven
         run: mvn clean install
@@ -41,11 +42,4 @@ jobs:
       - name: Wait until MySQL is healthy
         run: |
           echo "Waiting for healthy services..."
-          timeout 60s bash -c 'until docker-compose -f ./springboot-mall/docker-compose.yml ps | grep "healthy"; do sleep 2; done'
-
-      - name: Run Integration Tests
-        run: docker-compose -f ./springboot-mall/docker-compose.yml exec -T app mvn test
-
-      - name: Shutdown
-        if: always()
-        run: docker-compose -f ./springboot-mall/docker-compose.yml down
+          timeout 60s bash -c 'until docker-compose -f ./springboot-m
