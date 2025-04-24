@@ -3,7 +3,7 @@ name: Spring Boot CI with Docker Compose
 on:
   push:
     branches:
-      - main  # 或你實際使用的分支
+      - main  # 或者換成你實際使用的分支
 
 jobs:
   build:
@@ -17,7 +17,8 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Set up Docker Compose
-        run: docker compose version
+        run: |
+          docker compose version  # 確認 Docker Compose 可以運作
 
       - name: Build and start with Docker Compose
         run: docker compose up --build -d
@@ -29,6 +30,9 @@ jobs:
 
       - name: Run Integration Tests (optional)
         run: docker compose exec -T app mvn test
+
+      - name: View Docker Compose logs
+        run: docker compose logs
 
       - name: Shutdown
         if: always()
