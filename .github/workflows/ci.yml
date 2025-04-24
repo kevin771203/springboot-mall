@@ -13,10 +13,10 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
 
-      - name: Show all files
+      - name: Show directory contents
         run: |
-          echo "Current path: $(pwd)"
-          find . -type f
+          echo "Current directory: $(pwd)"
+          ls -R
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -25,16 +25,16 @@ jobs:
         run: docker compose version
 
       - name: Build and start with Docker Compose
-        run: docker compose -f ./docker-compose.yml up --build -d
+        run: docker-compose -f ./docker-compose.yml up --build -d
 
       - name: Wait until MySQL is healthy
         run: |
           echo "Waiting for healthy services..."
-          timeout 60s bash -c 'until docker compose -f ./docker-compose.yml ps | grep "healthy"; do sleep 2; done'
+          timeout 60s bash -c 'until docker-compose -f ./docker-compose.yml ps | grep "healthy"; do sleep 2; done'
 
       - name: Run Integration Tests
-        run: docker compose -f ./docker-compose.yml exec -T app mvn test
+        run: docker-compose -f ./docker-compose.yml exec -T app mvn test
 
       - name: Shutdown
         if: always()
-        run: docker compose -f ./docker-compose.yml down
+        run: docker-compose -f ./docker-compose.yml down
