@@ -19,5 +19,4 @@ services:
         condition: service_healthy
     volumes:
       - .:/app
-      - ./.env:/app/.env
     working_dir: /app
