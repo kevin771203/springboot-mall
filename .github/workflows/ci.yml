@@ -46,8 +46,8 @@ jobs:
           echo "Waiting for healthy services..."
           timeout 60s bash -c 'until docker-compose -f ./springboot-mall/docker-compose.yml ps | grep "healthy"; do sleep 2; done'
 
-      - name: Run Integration Tests
-        run: docker-compose -f ./springboot-mall/docker-compose.yml exec -T app mvn test
+      - name: Run Integration Tests in Docker
+        run: docker-compose -f ./springboot-mall/docker-compose.yml run --rm app
 
       - name: Shutdown
         if: always()
