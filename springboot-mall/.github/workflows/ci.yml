@@ -3,7 +3,7 @@ name: Spring Boot CI with Docker Compose
 on:
   push:
     branches:
-      - main  # 或你實際使用的分支
+      - main
 
 jobs:
   build:
