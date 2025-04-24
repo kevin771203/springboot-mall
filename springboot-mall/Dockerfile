@@ -28,4 +28,4 @@ RUN mvn clean package -DskipTests
 EXPOSE 8080
 
 # 執行 jar（根據你打包出來的 jar 名字調整）
-CMD ["java", "-jar", "target/your-jar-name.jar"]
+CMD ["sh", "-c", "java -jar $(find target -name \"*.jar\" | head -n 1)"]
