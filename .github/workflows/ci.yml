@@ -19,8 +19,10 @@ jobs:
           sudo apt-get install -y openjdk-17-jdk
           java -version
 
-      - name: Build the project with Maven
-        run: mvn clean install
+      - name: Navigate to the project directory and build with Maven
+        run: |
+          cd springboot-mall  # 切換到包含 pom.xml 的目錄
+          mvn clean install
 
       - name: Install Docker Compose
         run: |
