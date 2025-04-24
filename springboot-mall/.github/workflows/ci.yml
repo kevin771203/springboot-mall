@@ -1,0 +1,35 @@
+name: Spring Boot CI with Docker Compose
+
+on:
+  push:
+    branches:
+      - main  # 或你實際使用的分支
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Set up Docker Compose
+        run: docker compose version
+
+      - name: Build and start with Docker Compose
+        run: docker compose up --build -d
+
+      - name: Wait until MySQL is healthy
+        run: |
+          echo "Waiting for healthy services..."
+          timeout 60s bash -c 'until docker compose ps | grep "healthy"; do sleep 2; done'
+
+      - name: Run Integration Tests (optional)
+        run: docker compose exec -T app mvn test
+
+      - name: Shutdown
+        if: always()
+        run: docker compose down
