@@ -3,7 +3,7 @@ name: Spring Boot CI with Docker Compose
 on:
   push:
     branches:
-      - main
+      - main  # 當 push 到 main 分支時觸發此工作流程
 
 jobs:
   build:
@@ -18,17 +18,17 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y openjdk-17-jdk
           java -version
-
+          
       - name: Build with Maven
         run: |
           cd springboot-mall  # 切換到包含 pom.xml 的目錄
           mvn clean install
-
+          
       - name: Install Docker Compose
         run: |
           sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
-
+          
       - name: Show Docker Compose version
         run: docker-compose --version
 
@@ -45,7 +45,7 @@ jobs:
         run: |
           echo "Waiting for healthy services..."
           timeout 60s bash -c 'until docker-compose -f ./springboot-mall/docker-compose.yml ps | grep "healthy"; do sleep 2; done'
-
+          
       - name: Run Integration Tests in Docker
         run: docker-compose -f ./springboot-mall/docker-compose.yml run --rm app
 
