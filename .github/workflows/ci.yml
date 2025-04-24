@@ -17,7 +17,6 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'openjdk'  # 改為 openjdk
 
       - name: Build the project with Maven
         run: mvn clean install
