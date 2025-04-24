@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class IdGenerator {
 
+    //雪花算法
     private final Snowflake snowflake;
     public IdGenerator() {
         long workerId = 1L;
