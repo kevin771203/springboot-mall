@@ -19,9 +19,9 @@ jobs:
           sudo apt-get install -y openjdk-17-jdk
           java -version
           
-      - name: Build with Maven
+      - name: Build with Maven (compile and test)
         run: |
-          cd springboot-mall  # 切換到包含 pom.xml 的目錄
+          cd springboot-mall
           mvn clean install
           
       - name: Install Docker Compose
@@ -29,11 +29,12 @@ jobs:
           sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
           
+      - name: Build Docker Image
+        run: |
+          docker build -t your_docker_image_name ./springboot-mall  # 確保指定正確的路徑
+
       - name: Show Docker Compose version
         run: docker-compose --version
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
 
       - name: Set up Docker Compose
         run: docker-compose version
