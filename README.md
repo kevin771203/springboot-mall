@@ -1,7 +1,7 @@
 
 
 
-1.使用SpringBoot架構(Java語言) 
+1.使用SpringBoot架構(Java語言)
 
 2. MySQL資料庫
 
