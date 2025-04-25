@@ -3,53 +3,25 @@ name: Spring Boot CI with Docker Compose
 on:
   push:
     branches:
-      - main  # 當 push 到 main 分支時觸發此工作流程
+      - main
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
 
-      - name: Install OpenJDK 17
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y openjdk-17-jdk
-          java -version
-          
-      - name: Build with Maven (compile and test)
-        run: |
-          cd springboot-mall
-          mvn clean install
-          
       - name: Install Docker Compose
         run: |
           sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
-          
-      - name: Build Docker Image
+
+      - name: Run Integration Tests
         run: |
-          docker build -t your_docker_image_name ./springboot-mall  # 確保指定正確的路徑
+          docker-compose -f springboot-mall/docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from app
 
-      - name: Show Docker Compose version
-        run: docker-compose --version
-
-      - name: Set up Docker Compose
-        run: docker-compose version
-
-      - name: Build and start with Docker Compose
-        run: docker-compose -f ./springboot-mall/docker-compose.yml up --build -d
-
-      - name: Wait until MySQL is healthy
-        run: |
-          echo "Waiting for healthy services..."
-          timeout 60s bash -c 'until docker-compose -f ./springboot-mall/docker-compose.yml ps | grep "healthy"; do sleep 2; done'
-          
-      - name: Run Integration Tests in Docker
-        run: docker-compose -f ./springboot-mall/docker-compose.yml run --rm app
-
-      - name: Shutdown
+      - name: Cleanup
         if: always()
-        run: docker-compose -f ./springboot-mall/docker-compose.yml down
+        run: docker-compose -f springboot-mall/docker-compose.test.yml down -v
