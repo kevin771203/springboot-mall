@@ -1,7 +1,9 @@
 
-1.使用SpringBoot架構(Java語言) 
 
-2. MySQL資料庫
+
+1.使用SpringBoot架構
+
+2.MySQL資料庫
 
 3.Restful API實現User,Product,Order CRUD功能
 
