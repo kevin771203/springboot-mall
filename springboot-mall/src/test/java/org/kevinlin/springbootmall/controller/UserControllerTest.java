@@ -15,6 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -38,6 +39,7 @@ class UserControllerTest {
     private UserLoginRequest userLoginRequest;
 
     // 註冊新帳號
+    @Transactional
     @Test
     void register_success() throws Exception {
 
@@ -65,6 +67,7 @@ class UserControllerTest {
         assertNotEquals(userRegisterRequest.getPassword(), user.getPassword());
     }
 
+    @Transactional
     @Test
     void register_invalidEmailFormat() throws Exception {
 
@@ -82,6 +85,7 @@ class UserControllerTest {
                 .andExpect(status().is(400));
     }
 
+    @Transactional
     @Test
     void register_emailAlreadyExist() throws Exception {
 

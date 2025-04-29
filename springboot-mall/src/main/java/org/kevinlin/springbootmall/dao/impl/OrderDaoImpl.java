@@ -2,7 +2,6 @@ package org.kevinlin.springbootmall.dao.impl;
 
 import org.kevinlin.springbootmall.dao.OrderDao;
 import org.kevinlin.springbootmall.dto.OrderQueryParams;
-import org.kevinlin.springbootmall.dto.ProductQueryParams;
 import org.kevinlin.springbootmall.model.Order;
 import org.kevinlin.springbootmall.model.OrderItem;
 import org.kevinlin.springbootmall.rowmapper.OrderItemRowMapper;

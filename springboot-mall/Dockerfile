@@ -10,11 +10,11 @@ WORKDIR /app
 # 複製專案檔案
 COPY . /app
 
-# 編譯並打包成 jar（你也可以用預設的 mvn spring-boot:run）
+# 編譯並打包成 jar
 RUN mvn clean package -DskipTests
 
-# 曝露 port 給 Render 掃到（你 properties 裡有設定 server.port=${PORT:8080}）
+# 曝露 port 給 Render
 EXPOSE 8080
 
-# 執行 jar（根據你打包出來的 jar 名字調整）
+# 執行 jar
 CMD ["sh", "-c", "java -jar $(find target -name \"*.jar\" | head -n 1)"]

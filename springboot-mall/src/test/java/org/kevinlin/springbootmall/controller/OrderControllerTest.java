@@ -199,12 +199,12 @@ public class OrderControllerTest {
         RequestBuilder requestBuilder = when_execute(userId);
 
         //then
-        mockMvc.perform(requestBuilder)
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.limit", notNullValue()))
-                .andExpect(jsonPath("$.offset", notNullValue()))
-                .andExpect(jsonPath("$.total", notNullValue()))
-                .andExpect(jsonPath("$.results", hasSize(0)));
+        then_should_be(
+                requestBuilder,
+                status().isOk(),
+                0,
+                List.of()
+        );
     }
 
     private CreateOrder getOrder(Long userId, List<BuyItem> buyItemList) throws JsonProcessingException {

@@ -40,7 +40,6 @@ public class ProductControllerTest {
     private JdbcTemplate jdbcTemplate;
 
     // 查詢商品
-    @Transactional
     @Test
     public void getProduct_success() throws Exception {
 
@@ -80,7 +79,7 @@ public class ProductControllerTest {
     }
 
     // 創建商品
-    @Transactional
+    @Transactional // 在測試完成後回復資料庫，沒掛 rollback 就會出現 ConstraintViolationException
     @Test
     public void createProduct_success() throws Exception {
 
