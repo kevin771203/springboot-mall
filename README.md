@@ -12,3 +12,9 @@
 5.標準MVC框架，Controller-Service-Dao
 
 6.單元測試&整合測試，用BDD方式實現
+
+7.Redis處理高併發訂單處理
+
+8.GitAction實作CI/CD
+
+
