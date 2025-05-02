@@ -3,16 +3,24 @@ package org.kevinlin.springbootmall.service.impl;
 import org.kevinlin.springbootmall.dao.UserDao;
 import org.kevinlin.springbootmall.dto.UserLoginRequest;
 import org.kevinlin.springbootmall.dto.UserRegisterRequest;
-import org.kevinlin.springbootmall.model.User;
+import org.kevinlin.springbootmall.model.Users;
 import org.kevinlin.springbootmall.service.UserService;
 import org.kevinlin.springbootmall.util.IdGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Collection;
 
 @Component
 public class UserServiceImpl implements UserService {
@@ -25,11 +33,17 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private IdGenerator idGenerator;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
+
+
     @Override
     public Long register(UserRegisterRequest userRegisterRequest) {
 
         //檢查 email 是否存在
-        User existingUser = userDao.getUserByEmail(userRegisterRequest.getEmail());
+        Users existingUser = userDao.getUserByEmail(userRegisterRequest.getEmail());
 
         if (existingUser != null) {
             log.warn("User with email {} already exists", userRegisterRequest.getEmail());
@@ -39,10 +53,10 @@ public class UserServiceImpl implements UserService {
 
 
         //使用MD5生成密碼
-        String hashedPassword = DigestUtils.md5DigestAsHex(userRegisterRequest.getPassword().getBytes());
+        String hashedPassword = passwordEncoder.encode(userRegisterRequest.getPassword());
         userRegisterRequest.setPassword(hashedPassword);
         
-        User user = new User();
+        Users user = new Users();
         user.setUserId(Long.parseLong(idGenerator.generateId()));
         user.setEmail(userRegisterRequest.getEmail());
         user.setPassword(userRegisterRequest.getPassword());
@@ -52,30 +66,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(Long userId) {
+    public Users getUserById(Long userId) {
         return userDao.getUserById(userId);
     }
 
-    @Override
-    public User login(UserLoginRequest userLoginRequest) {
-
-        User user = userDao.getUserByEmail(userLoginRequest.getEmail());
-
-        //檢查 email 是否存在
-        if (user == null) {
-            log.warn("User with email {} not found", userLoginRequest.getEmail());
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-
-        //使用MD5生成密碼
-        String hashedPassword = DigestUtils.md5DigestAsHex(userLoginRequest.getPassword().getBytes());
-
-        //檢查 password 是否正確
-        if (user.getPassword().equals(hashedPassword)) {
-            return user;
-        }else {
-            log.warn("User with email {} and password not match", userLoginRequest.getEmail());
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @Override
+//    public Users login(UserLoginRequest userLoginRequest) {
+//
+//        try {
+//        // 建立驗證用的 token
+//        Authentication authenticationToken = new UsernamePasswordAuthenticationToken(
+//                userLoginRequest.getEmail(),
+//                userLoginRequest.getPassword()
+//        );
+//
+//        // 驗證帳密（自動呼叫 UserDetailsService 與 PasswordEncoder）
+//        Authentication authentication = authenticationManager.authenticate(authenticationToken);
+//
+//        // 驗證成功，回傳資料
+//        return userDao.getUserByEmail(authentication.getName());
+//
+//    } catch (BadCredentialsException e) {
+//        log.warn("Invalid login for email {}", userLoginRequest.getEmail());
+//        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid email or password");
+//    }
+//    }
 }

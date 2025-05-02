@@ -1,12 +1,12 @@
 package org.kevinlin.springbootmall.dao;
 
-import org.kevinlin.springbootmall.model.User;
+import org.kevinlin.springbootmall.model.Users;
 
 public interface UserDao {
 
-    Long createUser(User user);
+    Long createUser(Users user);
 
-    User getUserById(Long userId);
+    Users getUserById(Long userId);
 
-    User getUserByEmail(String email);
+    Users getUserByEmail(String email);
 }

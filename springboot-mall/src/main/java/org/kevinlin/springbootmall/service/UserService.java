@@ -1,15 +1,15 @@
 package org.kevinlin.springbootmall.service;
 
-import jakarta.validation.Valid;
 import org.kevinlin.springbootmall.dto.UserLoginRequest;
 import org.kevinlin.springbootmall.dto.UserRegisterRequest;
-import org.kevinlin.springbootmall.model.User;
+import org.kevinlin.springbootmall.model.Users;
+import org.springframework.security.core.Authentication;
 
 public interface UserService {
 
     Long register(UserRegisterRequest userRegisterRequest);
 
-    User getUserById(Long userId);
+    Users getUserById(Long userId);
 
-    User login(UserLoginRequest userLoginRequest);
+//    Users login(UserLoginRequest userLoginRequest);
 }

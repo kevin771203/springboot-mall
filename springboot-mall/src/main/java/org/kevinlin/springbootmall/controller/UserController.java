@@ -3,14 +3,18 @@ package org.kevinlin.springbootmall.controller;
 import jakarta.validation.Valid;
 import org.kevinlin.springbootmall.dto.UserLoginRequest;
 import org.kevinlin.springbootmall.dto.UserRegisterRequest;
-import org.kevinlin.springbootmall.model.User;
+import org.kevinlin.springbootmall.model.Users;
 import org.kevinlin.springbootmall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collection;
 
 @RestController
 public class UserController {
@@ -19,20 +23,20 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/users/register")
-    public ResponseEntity<User> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest) {
+    public ResponseEntity<Users> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest) {
 
         Long userId = userService.register(userRegisterRequest);
 
-        User user = userService.getUserById(userId);
+        Users user = userService.getUserById(userId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
     @PostMapping("/users/login")
-    public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest) {
-        User user = userService.login(userLoginRequest);
+    public String login(Authentication authentication) {
+        String username = authentication.getName();
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
-        return ResponseEntity.status(HttpStatus.OK).body(user);
-
+        return "登入成功！帳號 " + username + " 的權限為: " + authorities;
     }
 }

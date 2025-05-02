@@ -1,13 +1,11 @@
 package org.kevinlin.springbootmall.dao.impl;
 
 import org.kevinlin.springbootmall.dao.UserDao;
-import org.kevinlin.springbootmall.model.User;
+import org.kevinlin.springbootmall.model.Users;
 import org.kevinlin.springbootmall.rowmapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -22,7 +20,7 @@ public class UserDaoImpl implements UserDao {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Override
-    public Long createUser(User user) {
+    public Long createUser(Users user) {
         String sql = "INSERT INTO users (user_id ,email, password, created_date, last_modified_date) " +
                 "VALUES (:user_id, :email, :password, :createdDate, :lastModifiedDate)";
 
@@ -44,14 +42,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUserById(Long userId) {
+    public Users getUserById(Long userId) {
         String sql = "SELECT user_id, email, password, created_date, last_modified_date " +
                 "FROM users WHERE user_id = :userId";
 
         Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
 
-        List<User> userList = namedParameterJdbcTemplate.query(sql, map, new UserRowMapper());
+        List<Users> userList = namedParameterJdbcTemplate.query(sql, map, new UserRowMapper());
 
         if(userList.size() > 0) {
             return userList.get(0);
@@ -62,14 +60,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public Users getUserByEmail(String email) {
         String sql = "SELECT user_id, email, password, created_date, last_modified_date " +
                 "FROM users WHERE email = :email";
 
         Map<String, Object> map = new HashMap<>();
         map.put("email", email);
 
-        List<User> userList = namedParameterJdbcTemplate.query(sql, map, new UserRowMapper());
+        List<Users> userList = namedParameterJdbcTemplate.query(sql, map, new UserRowMapper());
 
         if(userList.size() > 0) {
             return userList.get(0);

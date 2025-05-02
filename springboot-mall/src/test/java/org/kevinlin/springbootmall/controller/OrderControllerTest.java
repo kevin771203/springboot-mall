@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -43,6 +44,7 @@ public class OrderControllerTest {
     private UserDao userDao;
 
     // 創建訂單
+    @WithMockUser(username = "testuser", roles = {"USER"})
     @Transactional
     @Test
     void createOrder_success() throws Exception {
@@ -65,6 +67,7 @@ public class OrderControllerTest {
         );
     }
 
+    @WithMockUser(username = "testuser", roles = {"USER"})
     @Transactional
     @Test
     void createOrder_illegalArgument_emptyBuyItemList() throws Exception {
@@ -80,6 +83,7 @@ public class OrderControllerTest {
         then_should_be(requestBuilder);
     }
 
+    @WithMockUser(username = "testuser", roles = {"USER"})
     @Transactional
     @Test
     void createOrder_userNotExist() throws Exception {
@@ -95,6 +99,7 @@ public class OrderControllerTest {
         then_should_be(requestBuilder);
     }
 
+    @WithMockUser(username = "testuser", roles = {"USER"})
     @Transactional
     @Test
     void createOrder_productNotExist() throws Exception {
@@ -110,6 +115,7 @@ public class OrderControllerTest {
         then_should_be(requestBuilder);
     }
 
+    @WithMockUser(username = "testuser", roles = {"USER"})
     @Transactional
     @Test
     void createOrder_stockNotEnough() throws Exception {
@@ -126,6 +132,7 @@ public class OrderControllerTest {
     }
 
     // 查詢訂單列表
+    @WithMockUser(username = "testuser", roles = {"USER"})
     @Test
     void getOrders() throws Exception {
 
@@ -147,6 +154,7 @@ public class OrderControllerTest {
         );
     }
 
+    @WithMockUser(username = "testuser", roles = {"USER"})
     @Test
     void getOrders_pagination() throws Exception {
 
@@ -167,6 +175,7 @@ public class OrderControllerTest {
         );
     }
 
+    @WithMockUser(username = "testuser", roles = {"USER"})
     @Test
     void getOrders_userHasNoOrder() throws Exception {
 
@@ -188,7 +197,7 @@ public class OrderControllerTest {
 
     private record OrderExpectation(int userId, int totalAmount, int itemCount) {}
 
-
+    @WithMockUser(username = "testuser", roles = {"USER"})
     @Test
     void getOrders_userNotExist() throws Exception {
 

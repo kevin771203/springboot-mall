@@ -9,7 +9,7 @@ import org.kevinlin.springbootmall.dto.CreateOrderRequest;
 import org.kevinlin.springbootmall.model.Order;
 import org.kevinlin.springbootmall.model.OrderItem;
 import org.kevinlin.springbootmall.model.Product;
-import org.kevinlin.springbootmall.model.User;
+import org.kevinlin.springbootmall.model.Users;
 import org.kevinlin.springbootmall.service.OrderService;
 import org.kevinlin.springbootmall.util.IdGenerator;
 import org.slf4j.Logger;
@@ -79,7 +79,7 @@ public class OrderServiceImpl implements OrderService {
     public Long createOrder(Long userId, CreateOrderRequest createOrderRequest) {
 
         //檢查 userId 是否存在
-        User user = userDao.getUserById(userId);
+        Users user = userDao.getUserById(userId);
 
         if (user == null) {
             log.warn("User with id {} not found", userId);

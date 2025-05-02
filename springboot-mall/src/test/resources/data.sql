@@ -9,8 +9,8 @@ INSERT INTO product (product_id, product_name, category, image_url, price, stock
 
 
 -- user
-INSERT INTO users (user_id, email, password, created_date, last_modified_date) VALUES (1,'user1@gmail.com', '202cb962ac59075b964b07152d234b70', '2022-06-30 10:30:00', '2022-06-30 10:30:00');
-INSERT INTO users (user_id, email, password, created_date, last_modified_date) VALUES (2,'user2@gmail.com', '202cb962ac59075b964b07152d234b70', '2022-06-30 10:40:00', '2022-06-30 10:40:00');
+INSERT INTO users (user_id, email, password, created_date, last_modified_date) VALUES (1,'user1@gmail.com', '$2a$10$I8ZXl7tSfZg31fqFX9h/COCm7aftOvdN2C4gE4QI5hePkQOi7iXIS', '2022-06-30 10:30:00', '2022-06-30 10:30:00');
+INSERT INTO users (user_id, email, password, created_date, last_modified_date) VALUES (2,'user2@gmail.com', '$2a$10$I8ZXl7tSfZg31fqFX9h/COCm7aftOvdN2C4gE4QI5hePkQOi7iXIS', '2022-06-30 10:40:00', '2022-06-30 10:40:00');
 
 -- order, order_item
 
