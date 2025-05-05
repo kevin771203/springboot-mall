@@ -34,16 +34,18 @@ public class MySecurityConfig {
                 .formLogin(Customizer.withDefaults())
 
                 .authorizeHttpRequests(request -> request
-                        // 註冊功能
-                        .requestMatchers("/users/register").permitAll()
-                        // 登入功能
-                        .requestMatchers("/users/Login").permitAll()
+                        // 註冊與登入功能開放
+                        .requestMatchers("/users/register", "/users/Login").permitAll()
 
-                        //權限相關
-                        .requestMatchers("/products/**").hasAnyRole("ADMIN")
-                        .requestMatchers("/products", "/products/{productId}").hasAnyRole("NORMAL_MEMBER")
+                        // 一般會員可以查詢商品與下訂單
+                        .requestMatchers("/products", "/products/{productId}", "/users/{userId}/orders")
+                            .hasAnyRole("NORMAL_MEMBER", "ADMIN")  // 👈 合併權限
 
-                        .anyRequest().authenticated()
+                        // 管理者才可以操作商品資料
+                        .requestMatchers("/products/**").hasRole("ADMIN")
+
+                        // 其他請求一律禁止
+                        .anyRequest().denyAll()
                 )
 
                 .build();
