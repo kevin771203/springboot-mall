@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
 
 
-        //使用MD5生成密碼
+        //使用 BCrypt 加密演算法將密碼加密
         String hashedPassword = passwordEncoder.encode(userRegisterRequest.getPassword());
         userRegisterRequest.setPassword(hashedPassword);
         
