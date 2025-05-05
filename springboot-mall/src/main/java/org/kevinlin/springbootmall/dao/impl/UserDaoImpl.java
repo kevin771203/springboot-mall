@@ -1,7 +1,9 @@
 package org.kevinlin.springbootmall.dao.impl;
 
 import org.kevinlin.springbootmall.dao.UserDao;
+import org.kevinlin.springbootmall.model.Role;
 import org.kevinlin.springbootmall.model.Users;
+import org.kevinlin.springbootmall.rowmapper.RoleRowMapper;
 import org.kevinlin.springbootmall.rowmapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -19,6 +21,8 @@ public class UserDaoImpl implements UserDao {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    @Autowired
+    private RoleRowMapper roleRowMapper;
     @Override
     public Long createUser(Users user) {
         String sql = "INSERT INTO users (user_id ,email, password, created_date, last_modified_date) " +
@@ -74,5 +78,19 @@ public class UserDaoImpl implements UserDao {
         }else {
             return null;
         }
+    }
+
+    @Override
+    public List<Role> getRolesByUserId(Long userId) {
+        String sql = "SELECT role.role_id, role.role_name FROM role " +
+                "JOIN user_has_role ON role.role_id = user_has_role.role_id " +
+                "WHERE user_has_role.user_id = :userId";
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", userId);
+
+        List<Role> roleList = namedParameterJdbcTemplate.query(sql, map, roleRowMapper);
+
+        return roleList;
     }
 }

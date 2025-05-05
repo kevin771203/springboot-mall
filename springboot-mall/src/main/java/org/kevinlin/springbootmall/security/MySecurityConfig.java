@@ -37,7 +37,10 @@ public class MySecurityConfig {
                         // 註冊功能
                         .requestMatchers("/users/register").permitAll()
                         // 登入功能
-                        .requestMatchers("/users/Login").authenticated()
+                        .requestMatchers("/users/Login").permitAll()
+
+                        //權限相關
+                        .requestMatchers("/products/**").hasAnyRole("ADMIN")
 
                         .anyRequest().authenticated()
                 )

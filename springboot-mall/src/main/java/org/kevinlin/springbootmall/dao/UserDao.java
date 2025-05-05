@@ -1,6 +1,9 @@
 package org.kevinlin.springbootmall.dao;
 
+import org.kevinlin.springbootmall.model.Role;
 import org.kevinlin.springbootmall.model.Users;
+
+import java.util.List;
 
 public interface UserDao {
 
@@ -9,4 +12,6 @@ public interface UserDao {
     Users getUserById(Long userId);
 
     Users getUserByEmail(String email);
+
+    List<Role> getRolesByUserId(Long userId);
 }

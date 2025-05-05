@@ -21,3 +21,10 @@ INSERT INTO order_item (order_item_id, order_id, product_id, quantity, amount) V
 
 INSERT INTO `order` (order_id, user_id, total_amount, created_date, last_modified_date) VALUES (2,1, 100000, '2022-06-30 12:03:00', '2022-06-30 12:03:00');
 INSERT INTO order_item (order_item_id, order_id, product_id, quantity, amount) VALUES (4,2, 4, 1, 100000);
+
+-- role
+INSERT INTO role(role_name) VALUES ('ROLE_ADMIN');
+INSERT INTO role(role_name) VALUES ('ROLE_NORMAL_MEMBER');
+
+INSERT INTO user_has_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO user_has_role (user_id, role_id) VALUES (2, 2);

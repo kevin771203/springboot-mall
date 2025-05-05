@@ -41,7 +41,7 @@ public class ProductControllerTest {
     private JdbcTemplate jdbcTemplate;
 
     // 查詢商品
-    @WithMockUser(username = "testuser", roles = {"USER"})
+    @WithMockUser(username = "testuser", roles = {"ADMIN"})
     @Test
     public void getProduct_success() throws Exception {
 
@@ -65,7 +65,7 @@ public class ProductControllerTest {
                 .andExpect(jsonPath("$.lastModifiedDate", notNullValue()));
     }
 
-    @WithMockUser(username = "testuser", roles = {"USER"})
+    @WithMockUser(username = "testuser", roles = {"ADMIN"})
     @Test
     public void getProduct_notFound() throws Exception {
 
@@ -81,7 +81,7 @@ public class ProductControllerTest {
     }
 
     // 創建商品
-    @WithMockUser(username = "testuser", roles = {"USER"})
+    @WithMockUser(username = "testuser", roles = {"ADMIN"})
     @Transactional // 在測試完成後回復資料庫，沒掛 rollback 就會出現 ConstraintViolationException
     @Test
     public void createProduct_success() throws Exception {
@@ -111,7 +111,7 @@ public class ProductControllerTest {
                 .andExpect(jsonPath("$.lastModifiedDate", notNullValue()));
     }
 
-    @WithMockUser(username = "testuser", roles = {"USER"})
+    @WithMockUser(username = "testuser", roles = {"ADMIN"})
     @Transactional
     @Test
     public void createProduct_illegalArgument() throws Exception {
@@ -129,7 +129,7 @@ public class ProductControllerTest {
     }
 
     // 更新商品
-    @WithMockUser(username = "testuser", roles = {"USER"})
+    @WithMockUser(username = "testuser", roles = {"ADMIN"})
     @Transactional
     @Test
     public void updateProduct_success() throws Exception {
@@ -170,7 +170,7 @@ public class ProductControllerTest {
         return requestBuilder;
     }
 
-    @WithMockUser(username = "testuser", roles = {"USER"})
+    @WithMockUser(username = "testuser", roles = {"ADMIN"})
     @Transactional
     @Test
     public void updateProduct_illegalArgument() throws Exception {
@@ -190,7 +190,7 @@ public class ProductControllerTest {
 
     }
 
-    @WithMockUser(username = "testuser", roles = {"USER"})
+    @WithMockUser(username = "testuser", roles = {"ADMIN"})
     @Transactional
     @Test
     public void updateProduct_productNotFound() throws Exception {
@@ -215,7 +215,7 @@ public class ProductControllerTest {
     }
 
     // 刪除商品
-    @WithMockUser(username = "testuser", roles = {"USER"})
+    @WithMockUser(username = "testuser", roles = {"ADMIN"})
     @Transactional
     @Test
     public void deleteProduct_success() throws Exception {
@@ -232,7 +232,7 @@ public class ProductControllerTest {
                 .andExpect(status().is(204));
     }
 
-    @WithMockUser(username = "testuser", roles = {"USER"})
+    @WithMockUser(username = "testuser", roles = {"ADMIN"})
     @Transactional
     @Test
     public void deleteProduct_deleteNonExistingProduct() throws Exception {
@@ -250,7 +250,7 @@ public class ProductControllerTest {
     }
 
     // 查詢商品列表
-    @WithMockUser(username = "testuser", roles = {"USER"})
+    @WithMockUser(username = "testuser", roles = {"ADMIN"})
     @Test
     public void getProducts() throws Exception {
 
@@ -271,7 +271,7 @@ public class ProductControllerTest {
                 .andExpect(jsonPath("$.results", hasSize(5)));
     }
 
-    @WithMockUser(username = "testuser", roles = {"USER"})
+    @WithMockUser(username = "testuser", roles = {"ADMIN"})
     @Test
     void getProducts_filtering() throws Exception {
 
@@ -291,7 +291,7 @@ public class ProductControllerTest {
                 .andExpect(jsonPath("$.results", hasSize(2)));
     }
 
-    @WithMockUser(username = "testuser", roles = {"USER"})
+    @WithMockUser(username = "testuser", roles = {"ADMIN"})
     @Test
     void getProducts_sorting() throws Exception {
 
@@ -317,7 +317,7 @@ public class ProductControllerTest {
                 .andExpect(jsonPath("$.results[4].productId", equalTo(2)));
     }
 
-    @WithMockUser(username = "testuser", roles = {"USER"})
+    @WithMockUser(username = "testuser", roles = {"ADMIN"})
     @Test
     void getProducts_pagination() throws Exception {
 
