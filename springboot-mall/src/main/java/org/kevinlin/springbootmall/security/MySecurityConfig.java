@@ -41,6 +41,7 @@ public class MySecurityConfig {
 
                         //權限相關
                         .requestMatchers("/products/**").hasAnyRole("ADMIN")
+                        .requestMatchers("/products", "/products/{productId}").hasAnyRole("NORMAL_MEMBER")
 
                         .anyRequest().authenticated()
                 )
