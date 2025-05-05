@@ -38,7 +38,7 @@ public class ProdcutServiceImpl implements ProductService {
     @Override
 public Long createProduct(ProductRequest productRequest) {
     Product product = new Product();
-    product.setProductId(Long.parseLong(idGenerator.generateId())); // ✅ 雪花 ID
+    product.setProductId(idGenerator.generateId()); // ✅ 雪花 ID
     product.setProductName(productRequest.getProductName());
     product.setCategory(productRequest.getCategory());
     product.setImageUrl(productRequest.getImageUrl());

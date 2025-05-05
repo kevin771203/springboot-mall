@@ -15,7 +15,7 @@ public class IdGenerator {
         this.snowflake = IdUtil.getSnowflake(workerId, dataCenterId);
     }
 
-    public String generateId() {
-        return snowflake.nextIdStr();
+    public long generateId() {
+        return snowflake.nextId();
     }
 }

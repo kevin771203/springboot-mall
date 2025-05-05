@@ -121,7 +121,7 @@ public class OrderServiceImpl implements OrderService {
 
                 //轉換BuyItem為OrderItem
                 OrderItem orderItem = new OrderItem();
-                orderItem.setOrderItemId(Long.parseLong(idGenerator.generateId()));
+                orderItem.setOrderItemId(idGenerator.generateId());
                 orderItem.setProductId(buyItem.getProductId());
                 orderItem.setQuantity(buyItem.getQuantity());
                 orderItem.setAmount(amount);
@@ -131,7 +131,7 @@ public class OrderServiceImpl implements OrderService {
 
 
             Order order = new Order();
-            order.setOrderId(Long.parseLong(idGenerator.generateId()));
+            order.setOrderId(idGenerator.generateId());
             order.setUserId(userId);
             order.setTotalAmount(totalAmount);
 

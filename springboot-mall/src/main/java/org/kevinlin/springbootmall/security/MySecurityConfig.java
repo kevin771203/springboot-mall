@@ -35,7 +35,7 @@ public class MySecurityConfig {
 
                 .authorizeHttpRequests(request -> request
                         // 註冊與登入功能開放
-                        .requestMatchers("/users/register", "/users/Login").permitAll()
+                        .requestMatchers("/users/register", "/users/login").permitAll()
 
                         // 一般會員可以查詢商品與下訂單
                         .requestMatchers("/products", "/products/{productId}", "/users/{userId}/orders")

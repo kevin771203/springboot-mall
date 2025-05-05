@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
         userRegisterRequest.setPassword(hashedPassword);
         
         Users user = new Users();
-        user.setUserId(Long.parseLong(idGenerator.generateId()));
+        user.setUserId(idGenerator.generateId());
         user.setEmail(userRegisterRequest.getEmail());
         user.setPassword(userRegisterRequest.getPassword());
 
