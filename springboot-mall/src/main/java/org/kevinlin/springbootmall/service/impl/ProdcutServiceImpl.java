@@ -36,18 +36,18 @@ public class ProdcutServiceImpl implements ProductService {
     }
 
     @Override
-public Long createProduct(ProductRequest productRequest) {
-    Product product = new Product();
-    product.setProductId(idGenerator.generateId()); // ✅ 雪花 ID
-    product.setProductName(productRequest.getProductName());
-    product.setCategory(productRequest.getCategory());
-    product.setImageUrl(productRequest.getImageUrl());
-    product.setPrice(productRequest.getPrice());
-    product.setStock(productRequest.getStock());
-    product.setDescription(productRequest.getDescription());
+    public Long createProduct(ProductRequest productRequest) {
+        Product product = new Product();
+        product.setProductId(idGenerator.generateId()); // ✅ 雪花 ID
+        product.setProductName(productRequest.getProductName());
+        product.setCategory(productRequest.getCategory());
+        product.setImageUrl(productRequest.getImageUrl());
+        product.setPrice(productRequest.getPrice());
+        product.setStock(productRequest.getStock());
+        product.setDescription(productRequest.getDescription());
 
-    return productDao.createProduct(product); // ⬅️ 丟完整的 Product 給 DAO
-}
+        return productDao.createProduct(product); // ⬅️ 丟完整的 Product 給 DAO
+    }
 
 
     @Override
