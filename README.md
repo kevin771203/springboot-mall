@@ -17,4 +17,6 @@
 
 8.GitAction實作CI/CD
 
+9.Spring Security 做帳號的認證跟授權功能
+
 
