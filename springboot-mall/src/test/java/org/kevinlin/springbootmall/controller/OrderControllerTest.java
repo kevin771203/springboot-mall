@@ -25,6 +25,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -250,7 +251,8 @@ public class OrderControllerTest {
         return MockMvcRequestBuilders
                 .post("/users/{userId}/orders", order.userId())
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(order.json());
+                .content(order.json())
+                .with(csrf());
     }
 
     private static RequestBuilder when_execute(Long userId) {

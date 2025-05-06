@@ -23,6 +23,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.nullValue;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -166,7 +167,8 @@ public class ProductControllerTest {
 
         RequestBuilder requestBuilder = productId
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(json);
+                .content(json)
+                .with(csrf());
         return requestBuilder;
     }
 
@@ -225,7 +227,7 @@ public class ProductControllerTest {
 
         //when
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .delete("/products/{productId}", productId);
+                .delete("/products/{productId}", productId).with(csrf());
 
         //then
         mockMvc.perform(requestBuilder)
@@ -242,7 +244,7 @@ public class ProductControllerTest {
 
         //when
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .delete("/products/{productId}", productId);
+                .delete("/products/{productId}", productId).with(csrf());
 
         //then
         mockMvc.perform(requestBuilder)
@@ -358,7 +360,8 @@ public class ProductControllerTest {
 
     private RequestBuilder when_execute(ProductRequest productRequest) throws JsonProcessingException {
         RequestBuilder requestBuilder = when_execute(productRequest, MockMvcRequestBuilders
-                .post("/products"));
+                .post("/products")
+                .with(csrf()));
         return requestBuilder;
     }
 
