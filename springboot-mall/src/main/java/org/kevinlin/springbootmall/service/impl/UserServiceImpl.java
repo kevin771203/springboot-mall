@@ -1,8 +1,10 @@
 package org.kevinlin.springbootmall.service.impl;
 
+import org.kevinlin.springbootmall.dao.RoleDao;
 import org.kevinlin.springbootmall.dao.UserDao;
 import org.kevinlin.springbootmall.dto.UserLoginRequest;
 import org.kevinlin.springbootmall.dto.UserRegisterRequest;
+import org.kevinlin.springbootmall.model.Role;
 import org.kevinlin.springbootmall.model.Users;
 import org.kevinlin.springbootmall.service.UserService;
 import org.kevinlin.springbootmall.util.IdGenerator;
@@ -29,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private RoleDao roleDao;
 
     @Autowired
     private IdGenerator idGenerator;
@@ -60,6 +65,10 @@ public class UserServiceImpl implements UserService {
         user.setUserId(idGenerator.generateId());
         user.setEmail(userRegisterRequest.getEmail());
         user.setPassword(userRegisterRequest.getPassword());
+
+        // 為 Member 添加預設的 Role
+        Role normalRole = roleDao.getRoleByName("ROLE_NORMAL_MEMBER");
+        userDao.addRoleForUserId(user.getUserId(), normalRole);
 
         //創建 user
         return userDao.createUser(user);

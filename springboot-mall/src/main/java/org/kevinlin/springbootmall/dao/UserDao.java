@@ -14,4 +14,6 @@ public interface UserDao {
     Users getUserByEmail(String email);
 
     List<Role> getRolesByUserId(Long userId);
+
+    void addRoleForUserId(Long userId, Role role);
 }

@@ -93,4 +93,15 @@ public class UserDaoImpl implements UserDao {
 
         return roleList;
     }
+
+    @Override
+    public void addRoleForUserId(Long userId, Role role) {
+        String sql = "INSERT INTO user_has_role(user_id, role_id) VALUES (:userId, :roleId)";
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", userId);
+        map.put("roleId", role.getRoleId());
+
+        namedParameterJdbcTemplate.update(sql, map);
+    }
 }
