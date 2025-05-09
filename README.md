@@ -23,4 +23,6 @@
 
 11.CORS跨域 & CSRF防禦 實作
 
+12.OAuth 2.0 社交登入 實作(google、facebook、Github & Line)
+
 
