@@ -120,7 +120,7 @@ class UserControllerTest {
 
         //when
         RequestBuilder requestBuilder = when_execute(
-                "/users/login",
+                "/userLogin",
                 userRegisterRequest.getEmail(),
                 userRegisterRequest.getPassword()
         );
@@ -142,7 +142,7 @@ class UserControllerTest {
 
         //when
         RequestBuilder requestBuilder = when_execute(
-                "/users/login",
+                "/login",
                 userRegisterRequest.getEmail(),
                 wrongPassword
         );
@@ -163,7 +163,7 @@ class UserControllerTest {
 
         //when
         RequestBuilder requestBuilder = when_execute(
-                "/users/login",
+                "/userLogin",
                 mail,
                 password
         );
@@ -184,7 +184,7 @@ class UserControllerTest {
 
         //when
         RequestBuilder requestBuilder = when_execute(
-                "/users/login",
+                "/login",
                 unknownEmail,
                 password
         );
