@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -41,7 +40,7 @@ public class MySecurityConfig {
                 .csrf(csrf -> csrf
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                         .csrfTokenRequestHandler(createCsrfHandler())
-                        .ignoringRequestMatchers("/users/register", "/users/login")
+                        .ignoringRequestMatchers("/userRegister", "/userLogin")
                 )
 
                 // 設定 CORS 跨域
@@ -53,12 +52,20 @@ public class MySecurityConfig {
                 .addFilterBefore(new MyFilter(), BasicAuthenticationFilter.class)
 
                 .httpBasic(Customizer.withDefaults())
-                .formLogin(Customizer.withDefaults())
+
+                // 設定 Form 登入
+                .formLogin(form -> form
+                    .loginProcessingUrl("/login")
+                    .defaultSuccessUrl("/userLogin", true)
+                )
+
+                // 設定 OAuth 2.0 社交登入
+//                .oauth2Login(Customizer.withDefaults())
 
                 .authorizeHttpRequests(request -> request
                         // 註冊與登入功能開放
-                        .requestMatchers("/users/register").permitAll()
-                        .requestMatchers("/users/login").authenticated()
+                        .requestMatchers("/userRegister").permitAll()
+                        .requestMatchers("/userLogin").authenticated()
 
                         // 一般會員可以查詢商品與下訂單
                         .requestMatchers("/products", "/products/{productId}", "/users/{userId}/orders")
@@ -72,6 +79,11 @@ public class MySecurityConfig {
                 )
 
                 .build();
+    }
+
+    // 判斷是否為測試環境
+    private boolean isTestEnv() {
+        return "test".equals(System.getProperty("spring.profiles.active"));
     }
 
     private CsrfTokenRequestAttributeHandler createCsrfHandler() {

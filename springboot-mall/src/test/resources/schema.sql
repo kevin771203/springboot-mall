@@ -51,3 +51,5 @@ CREATE TABLE user_has_role
     role_id            INT NOT NULL
 );
 
+
+

@@ -52,7 +52,7 @@ class UserControllerTest {
         //when
         RequestBuilder requestBuilder = when_execute(
                 getuserRegisterRequestJson(userRegisterRequest),
-                "/users/register"
+                "/userRegister"
         );
 
 
@@ -79,7 +79,7 @@ class UserControllerTest {
 
 
         //when
-        RequestBuilder requestBuilder = when_execute(json, "/users/register");
+        RequestBuilder requestBuilder = when_execute(json, "/userRegister");
 
 
         //then
@@ -97,7 +97,7 @@ class UserControllerTest {
 
 
         //when
-        RequestBuilder requestBuilder = when_execute(json, "/users/register");
+        RequestBuilder requestBuilder = when_execute(json, "/userRegister");
         //創建帳號
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(201));
@@ -142,7 +142,7 @@ class UserControllerTest {
 
         //when
         RequestBuilder requestBuilder = when_execute(
-                "/login",
+                "/userLogin",
                 userRegisterRequest.getEmail(),
                 wrongPassword
         );
@@ -184,7 +184,7 @@ class UserControllerTest {
 
         //when
         RequestBuilder requestBuilder = when_execute(
-                "/login",
+                "/userLogin",
                 unknownEmail,
                 password
         );
@@ -203,7 +203,7 @@ class UserControllerTest {
     private void register(UserRegisterRequest userRegisterRequest) throws Exception {
         String json = getuserRegisterRequestJson(userRegisterRequest);
 
-        RequestBuilder requestBuilder = when_execute(json, "/users/register");
+        RequestBuilder requestBuilder = when_execute(json, "/userRegister");
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(201));
@@ -211,7 +211,7 @@ class UserControllerTest {
 
     private static MockHttpServletRequestBuilder when_execute(String path,String email, String password) {
         return MockMvcRequestBuilders
-                .post(path)
+                .get(path)
                 .with(httpBasic(
                         email,
                         password

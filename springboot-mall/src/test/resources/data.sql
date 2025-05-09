@@ -28,3 +28,5 @@ INSERT INTO role(role_name) VALUES ('ROLE_NORMAL_MEMBER');
 
 INSERT INTO user_has_role (user_id, role_id) VALUES (1, 1);
 INSERT INTO user_has_role (user_id, role_id) VALUES (2, 2);
+
+
