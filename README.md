@@ -1,28 +1,25 @@
+電商後端系統（Shopping Backend System）
 
+一個以 Spring Boot 為核心、具備高併發處理與社交登入功能的電商後端專案。支援完整的會員、商品與訂單流程，並考慮系統安全性與測試覆蓋率，模擬真實商業應用場景。
 
-
-1.使用SpringBoot架構
-
-2.MySQL資料庫
-
-3.Restful API實現User,Product,Order CRUD功能
-
-4.使用Hutool做snowFlake編碼方式來定義Id規則
-
-5.標準MVC框架，Controller-Service-Dao
-
-6.單元測試&整合測試，用BDD方式實現
-
-7.Redis處理高併發訂單處理
-
-8.GitAction實作CI/CD
-
-9.Spring Security 做帳號的認證跟授權功能
-
-10.Filter監看使用者登入紀錄
-
-11.CORS跨域 & CSRF防禦 實作
-
-12.OAuth 2.0 社交登入 實作(google、facebook、Github & Line)
-
+技術架構與核心功能
+	1.	後端框架：
+	•	使用 Spring Boot 建構專案，採 標準 MVC 架構（Controller-Service-Repository）
+	•	資料庫採用 MySQL
+	2.	API 設計：
+	•	RESTful API 實作，涵蓋 User、Product、Order 的 CRUD 功能
+	3.	ID 生成策略：
+	•	使用 Hutool 提供的 Snowflake 演算法 定義全域唯一的 ID 規則
+	4.	訂單高併發處理：
+	•	結合 Redis 快取機制 控制商品庫存與選購量，避免超賣與提升效能
+	5.	認證與授權：
+	•	整合 Spring Security 實作角色分級（Admin / Normal）
+	•	支援 OAuth 2.0 第三方社交登入（Google、Facebook、GitHub、LINE）
+	•	透過 Filter 紀錄使用者登入行為，增加監控與可追蹤性
+	6.	系統安全性：
+	•	實作 CORS 跨域請求設定 與 CSRF 攻擊防禦
+	7.	測試覆蓋：
+	•	使用 BDD（Behavior-Driven Development）風格 撰寫 單元測試與整合測試
+	8.	CI/CD：
+	•	使用 GitHub Actions 自動化流程實作 CI/CD
 
