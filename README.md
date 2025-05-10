@@ -18,16 +18,22 @@ RESTful API 實作，涵蓋 User、Product、Order 的 CRUD 功能
 結合 Redis 快取機制 控制商品庫存與選購量，避免超賣與提升效能
 
 5.認證與授權：
+
 (1)整合 Spring Security 實作角色分級（Admin / Normal）
+
 (2)支援 OAuth 2.0 第三方社交登入（Google、Facebook、GitHub、LINE）
+
 (3)透過 Filter 紀錄使用者登入行為，增加監控與可追蹤性
 
 6.系統安全性：
+
 實作 CORS 跨域請求設定 與 CSRF 攻擊防禦
 
 7.測試覆蓋：
+
 使用 BDD（Behavior-Driven Development）風格 撰寫 單元測試與整合測試
 	
 8.CI/CD：
+
 使用 GitHub Actions 自動化流程實作 CI/CD
 
