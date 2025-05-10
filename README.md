@@ -5,16 +5,21 @@
 技術架構與核心功能
 
 1.後端框架：
+
 (1)使用 Spring Boot 建構專案，採 標準 MVC 架構（Controller-Service-Repository）
+
 (2)資料庫採用 MySQL
 	
 2.API 設計：
+
 RESTful API 實作，涵蓋 User、Product、Order 的 CRUD 功能
 	
 3.ID 生成策略：
+
 使用 Hutool 提供的 Snowflake 演算法 定義全域唯一的 ID 規則
 
 4.訂單高併發處理：
+
 結合 Redis 快取機制 控制商品庫存與選購量，避免超賣與提升效能
 
 5.認證與授權：
