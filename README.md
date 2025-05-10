@@ -1,8 +1,9 @@
-		電商後端系統（Shopping Backend System）
+電商後端系統（Shopping Backend System）
 
 一個以 Spring Boot 為核心、具備高併發處理與社交登入功能的電商後端專案。支援完整的會員、商品與訂單流程，並考慮系統安全性與測試覆蓋率，模擬真實商業應用場景。
 
 技術架構與核心功能
+
 1.後端框架：
 (1)使用 Spring Boot 建構專案，採 標準 MVC 架構（Controller-Service-Repository）
 (2)資料庫採用 MySQL
