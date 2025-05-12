@@ -20,4 +20,5 @@ jobs:
           distribution: 'temurin'
 
       - name: Build and run tests
-        run: mvn clean verify
+        run: cd springboot-mall && mvn clean verify
+
