@@ -1,4 +1,4 @@
-name: Spring Boot CI with Docker Compose
+name: Spring Boot CI with H2 and Redis
 
 on:
   push:
@@ -6,22 +6,38 @@ on:
       - main
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
+
+    services:
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
 
-      - name: Install Docker Compose
-        run: |
-          sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-          sudo chmod +x /usr/local/bin/docker-compose
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-      - name: Run Integration Tests
+      - name: Wait for Redis to be ready
         run: |
-          docker-compose -f springboot-mall/docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from app
+          for i in {1..10}; do
+            redis-cli -h localhost ping && break
+            echo "Waiting for Redis..."
+            sleep 2
+          done
 
-      - name: Cleanup
-        if: always()
-        run: docker-compose -f springboot-mall/docker-compose.test.yml down -v
+      - name: Build and run tests
+        run: cd springboot-mall && mvn clean verify
+
