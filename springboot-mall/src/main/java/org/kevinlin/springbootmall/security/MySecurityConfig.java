@@ -59,6 +59,7 @@ public class MySecurityConfig {
                     .defaultSuccessUrl("/userLogin", true)
                 )
 
+
                 // 設定 OAuth 2.0 社交登入
 //                .oauth2Login(Customizer.withDefaults())
 
@@ -72,7 +73,7 @@ public class MySecurityConfig {
                             .hasAnyRole("NORMAL_MEMBER", "ADMIN")  // 👈 合併權限
 
                         // 管理者才可以操作商品資料
-                        .requestMatchers("/products/**").hasRole("ADMIN")
+                        .requestMatchers("/products/**","/v3/api-docs").hasRole("ADMIN")
 
                         // 其他請求一律禁止
                         .anyRequest().denyAll()
@@ -81,18 +82,10 @@ public class MySecurityConfig {
                 .build();
     }
 
-    // 判斷是否為測試環境
-    private boolean isTestEnv() {
-        return "test".equals(System.getProperty("spring.profiles.active"));
-    }
 
     private CsrfTokenRequestAttributeHandler createCsrfHandler() {
-        CsrfTokenRequestAttributeHandler csrfHandler = new CsrfTokenRequestAttributeHandler();
-        csrfHandler.setCsrfRequestAttributeName(null);
-
-        return csrfHandler;
+        return new CsrfTokenRequestAttributeHandler(); // 使用預設值
     }
-
 
     private CorsConfigurationSource createCorsConfig() {
         CorsConfiguration config = new CorsConfiguration();

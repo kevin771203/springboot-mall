@@ -15,7 +15,7 @@ public class MyFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String uri = request.getRequestURI();
 
-        if (uri.equals("/users/login")) {
+        if (uri.equals("/userLogin")) {
             String userAgent = request.getHeader("User-Agent");
             Date now = new Date();
 

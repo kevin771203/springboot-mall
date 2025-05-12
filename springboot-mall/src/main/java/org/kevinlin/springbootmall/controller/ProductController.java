@@ -1,5 +1,7 @@
 package org.kevinlin.springbootmall.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -19,11 +21,13 @@ import java.util.List;
 
 @Validated //讓參數生效
 @RestController
+@Tag(name = "Product API", description = "商品相關操作")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
+    @Operation(summary = "取得所有商品", description = "回傳商品列表")
     @GetMapping("/products")
     public ResponseEntity<Page<Product>> getProducts(
             //查詢條件 filtering
@@ -63,6 +67,7 @@ public class ProductController {
 
     }
 
+    @Operation(summary = "取得單一商品", description = "回傳單一商品詳情")
     @GetMapping("/products/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable Long productId) {
         Product product = productService.getProductById(productId);
@@ -74,6 +79,7 @@ public class ProductController {
         }
     }
 
+    @Operation(summary = "建立商品", description = "建立商品資料")
     @PostMapping("/products")
     public ResponseEntity<Product> createProduct(@RequestBody @Valid ProductRequest productRequest) {
         Long productId = productService.createProduct(productRequest);
@@ -83,6 +89,7 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(product);
     }
 
+    @Operation(summary = "更新商品", description = "更新商品資料")
     @PutMapping("/products/{productId}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long productId,
                                                  @RequestBody @Valid ProductRequest productRequest) {
@@ -102,6 +109,7 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
     }
 
+    @Operation(summary = "刪除單一商品", description = "刪除單一商品資料")
     @DeleteMapping("/products/{productId}")
     public ResponseEntity<?> deleteProduct(@PathVariable Long productId) {
 
