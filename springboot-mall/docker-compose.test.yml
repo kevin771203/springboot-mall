@@ -9,7 +9,7 @@ services:
       SPRING_DATASOURCE_DRIVER_CLASSNAME: org.h2.Driver
       SPRING_DATASOURCE_USERNAME: sa
       SPRING_DATASOURCE_PASSWORD: password
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none
       SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.H2Dialect
       SPRING_H2_CONSOLE_ENABLED: "true"
     ports:
