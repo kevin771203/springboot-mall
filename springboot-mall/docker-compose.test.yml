@@ -10,8 +10,9 @@ services:
       SPRING_DATASOURCE_PASSWORD: password
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.H2Dialect
-      SPRING_H2_CONSOLE_ENABLED: "true"  # 啟用 H2 控制台，如果需要可以設置為 true
+      SPRING_H2_CONSOLE_ENABLED: "true"
     ports:
       - "8080:8080"  # 這裡是應用的端口
-    depends_on:
-      - db
+    # 移除對 db 的依賴
+    # depends_on:
+    #   - db
