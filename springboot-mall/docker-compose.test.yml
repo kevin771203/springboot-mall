@@ -1,18 +1,22 @@
 services:
+  redis:
+    image: redis:6.2
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   app:
     build:
       context: .
       dockerfile: Dockerfile.test
+    depends_on:
+      redis:
+        condition: service_healthy
     environment:
-      SPRING_DATASOURCE_URL: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-      SPRING_DATASOURCE_DRIVER_CLASSNAME: org.h2.Driver
-      SPRING_DATASOURCE_USERNAME: sa
-      SPRING_DATASOURCE_PASSWORD: password
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.H2Dialect
-      SPRING_H2_CONSOLE_ENABLED: "true"
-    ports:
-      - "8080:8080"  # 這裡是應用的端口
-    # 移除對 db 的依賴
-    # depends_on:
-    #   - db
+      SPRING_DATASOURCE_URL: jdbc:h2:mem:testdb
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
