@@ -13,4 +13,4 @@ WORKDIR /app
 COPY . /app
 
 # 執行測試
-CMD ["mvn", "test"]
+CMD mvn test || (echo "=== TEST ERRORS ===" && cat /app/target/surefire-reports/*.txt && exit 1)
