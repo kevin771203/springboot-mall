@@ -32,7 +32,7 @@ public class OrderServiceRedisTest {
         Long result = redisTemplate.opsForValue().decrement(productKey);
 
         // 驗證是否正常減少
-        Assertions.assertEquals("9", redisTemplate.opsForValue().get(productKey));
+        Assertions.assertEquals(9, result);
     }
 
     @Test
