@@ -2,6 +2,7 @@ package org.kevinlin.springbootmall.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -64,20 +65,30 @@ public class MySecurityConfig {
 //                .oauth2Login(Customizer.withDefaults())
 
                 .authorizeHttpRequests(request -> request
-                        // 註冊與登入功能開放
-                        .requestMatchers("/userRegister").permitAll()
-                        .requestMatchers("/userLogin").authenticated()
+                    // 開放註冊與登入
+                    .requestMatchers("/userRegister").permitAll()
+                    .requestMatchers("/userLogin").authenticated()
 
-                        // 一般會員可以查詢商品與下訂單
-                        .requestMatchers("/products", "/products/{productId}", "/users/{userId}/orders")
-                            .hasAnyRole("NORMAL_MEMBER", "ADMIN")  // 👈 合併權限
+                    // 管理員權限優先
+                    .requestMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/products/**").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/products/**").hasRole("ADMIN")
 
-                        // 管理者才可以操作商品資料
-                        .requestMatchers("/products/**","/v3/api-docs").hasRole("ADMIN")
+                    // 會員查詢
+                    .requestMatchers(HttpMethod.GET, "/products", "/products/*", "/users/**")
+                        .hasAnyRole("NORMAL_MEMBER", "ADMIN")
 
-                        // 其他請求一律禁止
-                        .anyRequest().denyAll()
+                    // 會員建立訂單
+                    .requestMatchers(HttpMethod.POST, "/users/**").hasAnyRole("NORMAL_MEMBER","ADMIN")
+
+
+                    // Swagger 文件僅 ADMIN 可看
+                    .requestMatchers("/v3/api-docs").hasRole("ADMIN")
+
+                    // 其他都拒絕
+                    .anyRequest().denyAll()
                 )
+
 
                 .build();
     }
