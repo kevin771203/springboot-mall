@@ -12,8 +12,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 @AutoConfigureMockMvc
 public class OrderServiceRedisTest {
@@ -41,20 +39,35 @@ public class OrderServiceRedisTest {
         String productKey = "stock:product456";
         redisTemplate.opsForValue().set(productKey, "5");
 
-        int threadCount = 10;
+        // When：有 10 個人同時購買商品
+        AtomicInteger successCount = buyProduct(productKey, 10);
+
+
+        // Then：最多只有 5 筆成功扣庫存
+        Assertions.assertEquals(5, successCount.get());
+    }
+
+
+    private AtomicInteger buyProduct(String productKey, int threadCount) throws InterruptedException {
+
+
+        // 建立一個固定大小為 10 的執行緒池
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
+
+        // 使用 CountDownLatch 等待所有執行緒完成任務後再繼續
         CountDownLatch latch = new CountDownLatch(threadCount);
+
+        // 使用 AtomicInteger 統計成功購買（成功扣減庫存）的次數，確保執行緒安全
         AtomicInteger successCount = new AtomicInteger(0);
 
-        // When：同時有 10 個執行緒模擬購買行為
+        // 模擬同時有 10 個執行緒進行購買行為（例如秒殺商品）
         for (int i = 0; i < threadCount; i++) {
             executor.submit(() -> attemptDecrement(productKey, successCount, latch));
         }
 
-        latch.await(); // 等待所有執行緒執行完畢
-
-        // Then：最多只有 5 筆成功扣庫存
-        Assertions.assertEquals(5, successCount.get());
+        // 主執行緒等待所有購買執行緒都完成（CountDownLatch 倒數為 0）
+        latch.await();
+        return successCount;
     }
 
     private void attemptDecrement(String key, AtomicInteger successCount, CountDownLatch latch) {
