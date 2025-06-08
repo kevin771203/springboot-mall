@@ -1,0 +1,6 @@
+/Users/kevin/Desktop/GITexercise/springboot-mall/src/test/java/org/kevinlin/springbootmall/SpringbootMallApplicationTests.java
+/Users/kevin/Desktop/GITexercise/springboot-mall/src/test/java/org/kevinlin/springbootmall/controller/OrderControllerTest.java
+/Users/kevin/Desktop/GITexercise/springboot-mall/src/test/java/org/kevinlin/springbootmall/controller/ProductControllerTest.java
+/Users/kevin/Desktop/GITexercise/springboot-mall/src/test/java/org/kevinlin/springbootmall/controller/UserControllerTest.java
+/Users/kevin/Desktop/GITexercise/springboot-mall/src/test/java/org/kevinlin/springbootmall/security/MySecurityConfigTest.java
+/Users/kevin/Desktop/GITexercise/springboot-mall/src/test/java/org/kevinlin/springbootmall/service/impl/OrderServiceRedisTest.java

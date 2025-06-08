@@ -1,0 +1,16 @@
+# 使用 OpenJDK 作為基礎映像
+FROM openjdk:17-jdk-slim AS build
+
+# 安裝 Maven
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends maven && \
+    apt-get clean
+
+# 設定工作目錄
+WORKDIR /app
+
+# 複製所有檔案到容器內
+COPY . /app
+
+# 執行測試
+CMD mvn test || (echo "=== TEST ERRORS ===" && cat /app/target/surefire-reports/*.txt && exit 1)
