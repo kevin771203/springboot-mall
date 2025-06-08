@@ -4,7 +4,77 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47ca50ee-57c7-4523-9809-567b10c71eaf" name="Changes" comment="" />
+    <list default="true" id="47ca50ee-57c7-4523-9809-567b10c71eaf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/.github/workflows/ci.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/.github/workflows/deploy.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/Dockerfile.test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/docker-compose.test.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/SpringbootMallApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/config/RedisConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/constant/ProductCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/controller/OrderController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/controller/ProductController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dao/OAuth2UserDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dao/OrderDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dao/ProductDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dao/RoleDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dao/UserDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dao/impl/OAuth2UserDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dao/impl/OrderDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dao/impl/ProductDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dao/impl/RoleDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dao/impl/UserDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dto/BuyItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dto/CreateOrderRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dto/OrderQueryParams.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dto/ProductQueryParams.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dto/ProductRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dto/UserLoginRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/dto/UserRegisterRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/model/OAuth2User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/model/Order.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/model/OrderItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/model/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/model/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/model/Users.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/rowmapper/OAuth2UserRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/rowmapper/OrderItemRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/rowmapper/OrderRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/rowmapper/ProductRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/rowmapper/RoleRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/rowmapper/UserRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/security/MyFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/security/MyOAuth2UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/security/MyOidcUserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/security/MySecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/security/MyUserDetailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/service/OrderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/service/ProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/service/impl/OrderServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/service/impl/ProdcutServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/service/impl/UserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/util/IdGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/java/org/kevinlin/springbootmall/util/Page.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/test/java/org/kevinlin/springbootmall/SpringbootMallApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/test/java/org/kevinlin/springbootmall/controller/OrderControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/test/java/org/kevinlin/springbootmall/controller/ProductControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/test/java/org/kevinlin/springbootmall/controller/UserControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/test/java/org/kevinlin/springbootmall/security/MySecurityConfigTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/test/java/org/kevinlin/springbootmall/service/impl/OrderServiceRedisTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/test/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/test/resources/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/springboot-mall/src/test/resources/schema.sql" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,21 +83,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "kevin771203"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;kevin771203&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/kevin771203/springboot-mall.git",
-    "accountId": "0b120ced-7cee-4521-a488-d8fa9bb773bc"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kevin771203/springboot-mall.git&quot;,
+    &quot;accountId&quot;: &quot;0b120ced-7cee-4521-a488-d8fa9bb773bc&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2vtPjPlUYD6rCUzsXAML5Rs7as7" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -35,23 +105,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/kevin/Desktop/GITexercise/springboot-mall&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="JUnit.All in springboot-mall">
+    <configuration name="All in springboot-mall" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="springboot-mall" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringbootMallApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="springboot-mall" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.kevinlin.springbootmall.SpringbootMallApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in springboot-mall" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -69,6 +162,14 @@
       <option name="presentableId" value="Default" />
       <updated>1744961532570</updated>
       <workItem from="1744961534425" duration="402000" />
+      <workItem from="1749400386965" duration="35000" />
+      <workItem from="1749400539571" duration="16000" />
+      <workItem from="1749400572763" duration="30000" />
+      <workItem from="1749400719722" duration="53000" />
+      <workItem from="1749400801984" duration="114000" />
+      <workItem from="1749400918867" duration="42000" />
+      <workItem from="1749401446177" duration="49000" />
+      <workItem from="1749401495930" duration="60000" />
     </task>
     <servers />
   </component>
