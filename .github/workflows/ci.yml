@@ -39,5 +39,5 @@ jobs:
           done
 
       - name: Build and run tests
-        run: cd springboot-mall && mvn clean verify
+        run: mvn clean verify
 
